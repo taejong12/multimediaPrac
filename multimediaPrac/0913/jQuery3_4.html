@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery3</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 2. (바디) table tr td ul li 생성 -->
+    <table>
+        <tr>
+            <td>
+                <ul>
+                    <li id="shift">0<input type="text" name="n0" value="0"></li>
+                    <li>1<input type="text" name="n1" value="1"></li>
+                    <li>2<input type="text" name="n2" value="2"></li>
+                    <li>3<input type="text" name="n3" value="3"></li>
+                    <li>4<input type="text" name="n4" value="4"></li>
+                    <li>5<input type="text" name="n5" value="5"></li>
+                    <li>6<input type="text" name="n6" value="6"></li>
+                    <li>7<input type="radio" name="radio" value="7"></li>
+                    <li>8<input type="radio" name="radio" value="8"></li>
+                    <li>9<input type="radio" name="radio" value="9"></li>
+                    <li>10<input type="checkbox" name="chk" value="10"></li>
+                    <li>11<input type="checkbox" name="chk" value="11"></li>
+                    <li>12<input type="checkbox" name="chk" value="12"></li>
+                    <li>
+                        <h2>13</h2>
+                    </li>
+                    <li lang="en-us">14 red, white and blue</li>
+                    <li lang="en-es">15 rojo, amarillo y rojo</li>
+                    <li>16</li>
+                    <li>17</li>
+                </ul>
+            </td>
+
+            <!-- 3. td button 생성 -->
+            <td>
+                <button id="ex1">1 : animated</button><br>
+                <button id="ex2">2 : even</button><br>
+                <button id="ex3">3 : odd</button><br>
+                <button id="ex4">4 : focus</button><br>
+                <button id="ex5">5 : eq(1)</button><br>
+                <button id="ex6">6 : gt(6)</button><br>
+                <button id="ex7">7 : lt(4)</button><br>
+                <button id="ex8">8 : first</button><br>
+                <button id="ex9">9 : last</button><br>
+                <button id="ex10">10 : root</button><br>
+                <button id="ex11">11 : header</button><br>
+                <button id="ex12">12 : lang(en-us)</button><br>
+                <button id="ex13">13 : not(?)</button><br>
+
+            </td>
+        </tr>
+    </table>
+
+    <!-- 4. 스크립트 작성 -->
+    <script>
+
+        // 5. 즉시실행함수((function(){})();)
+        // 11. 슬라이드 토글
+        // 토글이라는 것은 스위치 같은 것 보였다 안 보였다 꺼졌다 켜졌다 양 방향을 다한다
+        // .slide Toggle()
+        // 13. 움직이면서 보였다 안 보였다 하는 것이 .slide Toggle()
+        // 14. 콜백함수를 사용해서 반복하게 만들었다(토글이 반복하는거 아님)
+        (function anima() {
+            $('#shift').slideToggle('slow', anima);
+        })();
+
+        // 6. 다큐먼트 레디 자체가 축약해서 사용 가능( $(function(){}); ) 동일한 의미
+        $(function () {
+            $('#ex1').click(function () {
+
+                // 7. (정의) css에서 *은 전체선택(전부 다 선택)
+                // 8. 초기화 하기 위해서 백그라운 컬러 화이트
+                // 9. 배경을 흰색으로 초기화
+                // 15. 별에 css 초기화
+                $('*').css('background-color', 'white');
+
+                // 16. 핑크로 바뀔 때 첫번째
+                // 17. animate 라는 함수가 있다
+                // 18. 트랜스 폼 일어나는 동작을 애니메이트로 대체 가능
+                // 19. 애니메이트는 정확히는 트렌지션까지 포함하고 있는 형태
+                $('li:animated').css('background-color', 'pink');
+            });
+
+            $('#ex2').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 20. even은 짝수
+                $('li:even').css('background-color', 'pink');
+            });
+
+            $('#ex3').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 21. odd는 홀수
+                $('li:odd').css('background-color', 'pink');
+            });
+
+            $('#ex4').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 22. 포커스가 됐는냐 안 됐느냐
+                // 23. click 이벤트 발생만 있고 focus하는 것이 없기에 추가를 해줬다
+                $('li:eq(4) input').focus();
+                $(":focus").css('background-color', 'pink');
+            });
+
+            // 24. 이벤트들은 .on하고 써도 되지만 이벤트 타입을 검색해서 사용해도 된다 ex).click()
+            $('#ex5').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 26. eq는 = 같은 거
+                $('li:eq(1)').css('background-color', 'pink');
+            });
+
+            $('#ex6').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 27. gt는 그레이트덴 ~보다 크다 6보다 크다
+                $('li:gt(6)').css('background-color', 'pink');
+            });
+
+            $('#ex7').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 28. lt는 레서덴 ~보다 작은거 4보다 작다
+                $('li:lt(4)').css('background-color', 'pink');
+            });
+
+            $('#ex8').click(function () {
+                $('*').css('background-color', 'white');
+                $('li:first').css('background-color', 'pink');
+            });
+
+            $('#ex9').click(function () {
+                $('*').css('background-color', 'white');
+                $('li:last').css('background-color', 'pink');
+            });
+
+            $('#ex10').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 29. root(document)
+                $(':root').css('background-color', 'pink');
+            });
+
+            $('#ex11').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 30. header <h></h>
+                $(':header').css('background-color', 'pink');
+            });
+
+            $('#ex12').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 31. lang: 언어속성
+                $('li:lang(en-us)').css('background-color', 'pink');
+            });
+
+            $('#ex13').click(function () {
+                $('*').css('background-color', 'white');
+
+                // 32. not(?) = ?에 해당하는게 아닌 것
+                // 33. 여기서 input은 입력할 수 있는 것만 적용되는 것으로 보임
+                $('input:not(:eq(3))').css('background-color', 'pink');
+            });
+        });
+    </script>
+
+    <!-- 10. 애드이벤트 뒤에 콜백함수를 걸면 이벤트에 다 걸린다 -->
+    <p>mouse multi event :on</p>
+    <script>
+        $(function () {
+            $('p').on({
+                mouseenter: function () {
+                    $(this).css('background-color', 'lightgreen');
+                },
+                mouseleave: function () {
+                    $(this).css('background-color', 'lightblue');
+                },
+                click: function () {
+                    $(this).css('background-color', 'yellow');
+                }
+            });
+        });
+    </script>
+</body>
+
+<!-- 
+1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음))
+
+2. (바디) table tr td ul li 생성
+
+3. td button 생성
+
+4. 스크립트 작성
+
+5. 즉시실행함수((function(){})();)
+
+6. 다큐먼트 레디 자체가 축약해서 사용 가능( $(function(){}); ) 동일한 의미
+
+7. (정의) css에서 *은 전체선택(전부 다 선택)
+
+8. 초기화 하기 위해서 백그라운 컬러 화이트
+
+9. 배경을 흰색으로 초기화
+
+10. (참고) 애드이벤트 뒤에 콜백함수를 걸면 이벤트에 다 걸린다
+
+11. 슬라이드 토글
+토글이라는 것은 스위치 같은 것 보였다 안 보였다 꺼졌다 켜졌다 양 방향을 다한다
+.slide Toggle()
+
+12. (정의) 제이쿼리 베이직 3가지
+.hide() 숨기기
+.show() 보이기
+.toggle() 숨기기 보이기 둘다
+
+13. 움직이면서 보였다 안 보였다 하는 것이 .slide Toggle()
+
+14. 콜백함수가 사용해서 반복하게 만들었다(토글이 반복하는거 아님)
+
+15. 별에 css 초기화
+
+16. 핑크로 바뀔 때 첫번쨰
+
+17. animate 라는 함수가 있다
+
+18. 트랜스 폼 일어나는 동작을 애니메이트로 대체 가능
+
+19. 애니메이트는 정확히는 트렌지션까지 포함하고 있는 형태
+
+20. 이븐 짝수
+
+21. 오드는 홀수
+
+22. 포커스가 됐는냐 안 됐느냐
+
+23. click 이벤트 발생만 있고 focus하는 것이 없기에 추가를 해줬다
+
+24. 이벤트들은 .on하고 써도 되지만 이벤트 타입을 검색해서 사용해도 된다 ex).click()
+
+25. (조사) blur?
+
+26. eq는 = 같은 거
+
+27. gt는 그레이트덴 ~보다 크다 6보다 크다
+
+28. lt는 레서덴 ~보다 작은거 4보다 작다
+
+29. root(document)
+
+30. header <h></h>
+
+31. lang: 언어속성
+
+32. not(?) = ?에 해당하는게 아닌 것
+
+33. 여기서 input은 입력할 수 있는 것만 적용되는 것으로 보임 -->
+
+</html>

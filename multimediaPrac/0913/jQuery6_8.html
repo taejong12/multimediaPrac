@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="js/jquery-3.6.1.min.js"></script>
+
+    <script>
+        $(function () {
+
+            // 3. 안에 해당하는 값을 가져올 때
+            // 4. 해당하는 요소에다가 append(), prepend()안에 내용 추가,
+            // append는 뒤쪽에 추가, prepend는 해당하는 내용물 앞쪽에 붙인다
+            $('#append').append($('#prac').text());
+            $('#append').prepend($('#prac').html());
+
+            // 5. text는 글자만 html은 태그까지 다 가져온다 그리고 값을 할당할 때도 쓴다
+            $('#append').text('우리집<b>너희집</b>');
+            $('#prepend').html('우리집<b>너희집</b>');
+
+            // 6. append에 직접적으로 text
+            $('button').click(() => {
+
+                // 7. .val()를 활용
+                // 8. span에 .val() 값을 넣었다
+                // 9. text에 '#input' 안쪽에 있는 값(.val())을 읽어왔다
+                $('span').text($('#input').val());
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+
+    <!-- 2. 태그 p id 생성 input button 생성 -->
+    <p id="prac">이것은 <mark>맛있는</mark><b>왕</b>뚜껑</p>
+    <p id="append">여기는 수업중</p>
+    <p id="prepend">여기는 수업중</p>
+    <p>Name:<input type="text" id="input" value="수업중"></p><br>
+    <button>값</button><span></span>
+
+</body>
+
+
+<!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음))
+        
+2. 태그 p id 생성 input button 생성
+
+3. 안에 해당하는 값을 가져올 때 
+
+4. 해당하는 요소에다가 append(), prepend()안에 내용 추가, append는 뒤쪽에 추가, prepend는 해당하는 내용물 앞쪽에 붙인다
+
+5. text는 글자만 html은 태그까지 다 가져온다 그리고 값을 할당할 때도 쓴다
+
+6. append에 직접적으로 text
+
+7. .val()를 활용
+
+8. span에 .val() 값을 넣었다
+
+9. text에 '#input' 안쪽에 있는 값(.val())을 읽어왔다 -->
+
+</html>

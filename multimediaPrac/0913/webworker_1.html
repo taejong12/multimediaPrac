@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webworker</title>
+</head>
+
+<body>
+    <p>Find a number</p><output id="result">0</output>
+
+    <!-- 3. 시작버튼 종료버튼 2개 -->
+    <div class="btngrp">
+        <button onclick="startWorker();">START</button>
+        <button onclick="stopWorker();">STOP</button>
+    </div>
+
+    <script>
+        var webworker;
+
+        // 2. 일을 시작시키고 종료시키는 펑션
+        function startWorker() {
+
+            // 14. 이걸(새로운것) 실행시킬 때 예외 처리를 해야한다
+            // 15. 워커가 실제로 동작하는 부분
+            // 16. 타입오브(예외처리)
+            // 17. 워커라는 것이 현재 브라우저에서 제대로 지원하고 있는지 확인
+            if (typeof (Worker) !== "undefined") {
+
+                // 18. 이미 웹 워커를 만들었다면 새로 만들지 않고 해당하는 것을 활용하는것(if를 작성하지 않으면 계속해서 새로 생성한다)
+                if (typeof (webworker) == "undefined") {
+
+                    // 1. (start) worker라고 하는 해당 객체를 new를 통해서 만들건데 무슨일을 맡길거다 라고 명시를 해줘야 한다 일을 시킬걸 만들어줘야한다
+                    // 4. 변수에 뉴워커 본격적으로 작성하는 내용 url이 들어간다 js 연동 (js 폴더에 worker.js 생성)
+                    // 6. 메인에서 업무 흐름을 하는 동안 외부에 있는 워커를 동작시키면 따로 동작한다
+                    // 7. 여기에 만들어져있는 동작만으로 진행되면 영향을 미치지 못한다(완성되기 전 과정)
+                    // 8. 상호간에 연결 내용이 없다
+                    // 19. (end) 워커라는 것은 제공하는 클래스 같은 것이 있느냐 undefined인지 확인해서 돌고 있으면 기존에 있는 것을 유지해야하니까 새로 생성하지 않기 위해서 넣어준다
+                    webworker = new Worker('js/worker.js');
+                }
+            }
+
+            // 9. 웹워커에게서 어떤 메세지를 받는다(상호작용을 위한 이벤트 발생 함수)
+            // 10. 온메시지로 받아온 것에 대해서 펑션으로 넘어온 값을 어떻게 처리를 하겠다
+            webworker.onmessage = function (event) {
+                console.log(event);
+
+                // 11. 메시지라는 이벤트가 넘어올거고 넘어온 값을 가지고 result에다가 집어넣겠다
+                document.getElementById('result').innerHTML = event.data;
+            }
+        }
+
+        // 2. 일을 시작시키고 종료시키는 펑션
+        function stopWorker() {
+            if (typeof (webworker) !== "undefined") {
+
+                // 5. 변수 안에 있는 펑션을 터미네이트 종료
+                webworker.terminate();
+                webworker = undefined;
+            }
+            document.getElementById('result').innerHTML = '0';
+        }
+
+    </script>
+</body>
+
+<!-- 1. (start) worker라고 하는 해당 객체를 new를 통해서 만들건데 무슨일을 맡길거다 라고 명시를 해줘야 한다 일을 시킬걸 만들어줘야한다
+
+2. 일을 시작시키고 종료시키는 펑션
+
+3. 시작버튼 종료버튼 2개
+
+4. 변수에 뉴워커 본격적으로 작성하는 내용 url이 들어간다 js 연동
+
+5. 변수 안에 있는 펑션을 터미네이트 종료
+
+6. 메인에서 업무 흐름을 하는 동안 외부에 있는 워커를 동작시키면 따로 동작한다
+
+7. 여기에 만들어져있는 동작만으로 진행되면 영향을 미치지 못한다
+
+8. 상호간에 연결 내용이 없다
+
+9. 웹워커에게서 어떤 메세지를 받는다
+
+10. 온메시지로 받아온 것에 대해서 펑션으로 넘어온 값을 어떻게 처리를 하겠다
+
+11. 메시지라는 이벤트가 넘어올거고 넘어온 값을 가지고 리저트에다가 집어넣겠다
+
+12. (worker.js)계속해서 돌거기 때문에 무한반복을 작성
+
+13. (worker.js)1부터 시작해서 1씩 증가 증가할때마다 메시지를 브라우저 쪽에 넘겨주면 브라우저 쪽에서 돌면서 웹워커로 돌아간다
+싱크를 맞춘게 없어서 깔끔하게 돌아가지는 않는다
+
+14. 이걸(새로운것) 실행시킬 때 예외 처리를 해야한다
+
+15. 워커가 실제로 동작하는 부분
+
+16. 타입오브
+
+17. 워커라는 것이 현재 브라우저에서 제대로 지원하고 있는지 확인
+
+18. 이미 웹 워커를 만들었다면 새로 만들지 않고 해당하는 것을 활용하는것
+
+19. (end)워커라는 것은 제공하는 클래스 같은 것이 있느냐 undefined인지 확인해서 돌고 있으면 기존에 있는 것을 유지해야하니까 새로 생성하지 않기 위해서 넣어준다
+
+20. (참고) webworker에서 처리하는 것이 아니라 워커라는 별도의 js에서 처리하고 동작을 한다
+
+21. (참고) 노드js나 자바스크립트에서 백단위에서 멀티스레드 구현을 위해서 생긴 것
+
+22. (참고) 우리쪽에서는 펑션을 돌리는게 낫다 -->
+
+</html>

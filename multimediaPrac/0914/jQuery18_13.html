@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+
+    <style>
+        span {
+            display: none;
+        }
+
+        p {
+            color: blue;
+        }
+
+        div {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <p>
+            <input type="text" id="target">
+            <span>발생</span>
+        </p>
+
+        <p>
+            <input type="password">
+            <span>발생</span>
+        </p>
+
+        <input type="text">
+
+        <input class="target" type="text">
+
+        <br>
+
+        <select name="fruit" class="target" multiple="multiple">
+            <option value="banana">바나나</option>
+            <option value="apple" selected>사과</option>
+            <option value="melon">멜론</option>
+            <option value="orange" selected>오렌지</option>
+            <option value="berry">딸기</option>
+            <option value="pear">배</option>
+        </select>
+
+    </form>
+
+    <div id="res1"></div>
+    <div id="res2"></div>
+
+    <script>
+        // 이벤트를 연동시키고 이벤트가 발생했을 때 어떤 형태가 발생하는지
+
+        // 들어가면 focus 나오면 blur
+        $(function(){
+            $('#target').on({
+                blur: function(){
+                    $('#res2').html('blur event');
+                },
+                focus: function(){
+                    $('#res2').html('focus event');
+                }
+            });
+            
+            // focus가 됐을 때 뒤에 뜬다 
+            $('input').focus(function(){
+                $(this).next('span').css('display','inline').fadeOut(1000);
+            });
+
+            // change 입력했을때
+            $('.target').change(function(){
+                $('#res2').html('change event');
+
+                let str='';
+
+                $('select option:selected').each(function(){
+                    str+=$(this).text()+'';
+                });
+
+                $('#res1').html(str).show();
+            });
+
+            $('input').select(function(){
+                $('#res2').html('select event');
+            });
+        });
+    </script>
+</body>
+
+</html>

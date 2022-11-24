@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery21</title>
+
+    <script src="../js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <h2>Filter</h2>
+
+    <input id="in" type="text" placeholder="search">
+
+    <div id="test">
+        <p>this is a pragraph</p>
+        <div>This is div element in div</div>
+        <button> this is a button</button>
+        <button> this is another button</button>
+        <p>This is another pragraph</p>
+    </div>
+
+    <script>
+
+        // filter
+        // input에다가 keyup 이벤트 발생
+        // 해당하는 값이 트루냐 펄스냐에 따라서 실행할지 안할지 적용
+        // indexOf 음수 양수 (let val=$(this).val().toLowerCase();)의 입력한 값이 있는지 없는지 확인, 값을 입력했을 때 있으면 show 없으면 hide (toggle)
+
+        
+        $(function(){
+            $('#in').keyup(function(){
+                let val=$(this).val().toLowerCase();
+                $('#test *').filter(function(){
+                    $(this).toggle($(this).text().toLowerCase()
+                        .indexOf(val)>-1)
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

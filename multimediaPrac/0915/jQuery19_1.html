@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery19</title>
+
+    <script src="../js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <label for="target">입력:</label>
+            <input id="target" type="text">
+        </fieldset>
+    </form>
+
+    <button id="btn">이벤트</button>
+
+    <div></div>
+
+    <script>
+        let count=0;
+        let event='keydown';
+        // event='keypress';
+        // event='keyup';
+        $('#target').on(event,function(e){
+            console.log(e, e.keyCode,e.which);
+            // 13 엔터키 preeventDefault
+            if(e.which===13){
+                e.preventDefault();
+            }
+            count++;
+            $('div').html(`key event ${count}번 발생`);
+        });
+
+        // trigger
+        $('#btn').click(function(){
+            $('#target').trigger(event);
+        });
+    </script>
+
+
+
+</body>
+
+</html>

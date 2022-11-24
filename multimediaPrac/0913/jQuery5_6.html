@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery5</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="js/jquery-3.6.1.min.js"></script>
+
+    <script>
+        //  4. 제이쿼리 작성
+        $(function () {
+            $('#start').click(function () {
+                
+                // 5. 자바스크립트 오브젝트 키값과 밸류 값은 css를 기반으로 해당하는 css를 통해서 트렌지션 처럼 서서히 변한다
+                // 6. 좌측에서 100px만큼 이동, 뒤에는 소모되는 시간만큼 듀레이션
+                $('div').animate({
+
+                    // 7. 한개만 적을 수 있고 여러개를 적을 수 있다
+                    // 8. 자바스크립트 트렌지션하고 비슷하다. 찾아서 확인(검색 조사)
+                    // 10. 일련의 동작들을 서서히 변해가는걸 보여준다
+                    // 16. 애니메이션을 동작하고(.animate()) 멈춘다는 것(.stop())
+
+                    left: '100px',
+                    height: '200px',
+                    fontSize: '3em'
+                }, 5000/* 듀레이션 */).slideToggle;
+            })
+
+            $('#stop1').click(function () {
+
+                // 9. 스탑 인자 값 2개 받는다
+                // 14. (중요) 시작했을 때 스탑을 했을 멈출 수 있다는 것
+                // 15. 해당하는 동작이 쭉 진행되는 것을 스탑으로 멈출 수 있고 다시 스타트를 하면 이어서 쭉 동작한다
+                // 17. 스탑은 애니메이션만 멈추는게 아니고 트렌지션 형태가 동작할 때 멈출 수 있다
+                // 18. 일련의 시간 사이에 스탑을 하면 멈춘다(애니메이션 도중 stop가능)
+                $('div').stop();
+            });
+
+            $('#stop2').click(function () {
+
+                // 11. 현재 움직이고 있는 애니메이션이 동작하는 것을 날려버리니까 멈추는 것뿐만 아니라 향후 동작까지 날아간다
+                $('div').stop(true); // clearQueue
+            });
+
+            $('#stop3').click(function () {
+
+                // 12. 점프투엔드 최종적으로 도달하는 곳까지 한 번에 가버린다
+                // 13. stop() 인자값에 차이를 두는 것뿐
+                $('div').stop(true, true); // jumpToEnd
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- 2. 버튼 4개 생성 -->
+    <button id="start">START</button>
+    <button id="stop1">STOP</button>
+    <button id="stop2">STOP ALL</button>
+    <button id="stop3">STOP FINISH</button>
+    <br>
+    <br>
+
+    <!-- 3. 태그 div 스타일 속성 적용 -->
+    <div style="background: lightgreen; height: 100px; width:200px;
+    position:absolute;">
+        OBJECT
+    </div>
+
+</body>
+
+<!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음))
+
+2. 버튼 4개 생성
+
+3. 태그 div 스타일 속성 적용
+
+4. 제이쿼리 작성
+
+5. 자바스크립트 오브젝트 키값과 밸류 값은 css를 기반으로 해당하는 css를 통해서 트렌지션 처럼 서서히 변한다
+
+6. 좌측에서 100px만큼 이동, 뒤에는 소모되는 시간만큼 듀레이션
+
+7. 한개만 적을 수 있고 여러개를 적을 수 있다
+
+8. 자바스크립트 트렌지션하고 비슷하다. 찾아서 확인(검색 조사)
+
+9. 스탑 인자 값 2개 받는다
+
+10. 일련의 동작들을 서서히 변해가는걸 보여준다
+
+11. 현재 움직이고 있는 애니메이션이 동작하는 것을 날려버리니까 멈추는 것뿐만 아니라 향후 동작까지 날아간다
+
+12. 점프투엔드 최종적으로 도달하는 곳까지 한 번에 가버린다
+
+13. 인자값에 차이를 두는 것뿐
+
+14. (중요) 시작했을 때 스탑을 했을 멈출 수 있다는 것
+
+15. 해당하는 동작이 쭉 진행되는 것을 스탑으로 멈출 수 있고 다시 스타트를 하면 이어서 쭉 동작한다
+
+16. 애니메이션을 동작하고 멈춘다는 것
+
+17. 스탑은 애니메이션만 멈추는게 아니고 트렌지션 형태가 동작할 때 멈출 수 있다
+
+18. 일련의 시간 사이에 스탑을 하면 멈춘다 -->
+
+</html>

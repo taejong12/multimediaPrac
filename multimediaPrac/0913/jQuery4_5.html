@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery4</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="js/jquery-3.6.1.min.js"></script>
+
+    <!-- 2. (헤드) 내부 스타일 시트 작성 -->
+    <style>
+        div {
+            border: 1px solid black;
+            margin: 20px;
+        }
+
+        span {
+            display: block;
+        }
+
+        .bg-blue {
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 3. (바디) 태그 div p span 작성 -->
+    <div>
+        <span>div0-span0</span>
+        <span>div0-span1</span>
+        <span>div0-span2</span>
+        <span>div0-span3</span>
+    </div>
+
+    <div>
+        <span>div1-span0</span>
+        <span>div1-span1</span>
+        <span>div1-span2</span>
+        <span>div1-span3</span>
+    </div>
+
+    <div>
+        <p>div2-span0</p>
+        <span>div2-span1</span>
+        <span>div2-span2</span>
+        <span>div2-span3</span>
+    </div>
+
+    <div>
+        <span>div3-span0</span>
+        <span>div3-span1</span>
+        <span>div3-span2</span>
+        <p>div3-span3</p>
+    </div>
+
+    <div>
+        <span>div4-span0</span>
+    </div>
+
+    <div>
+        <p>div5-p0</p>
+        <span>div5-span0</span>
+        <p>div5-p1</p>
+    </div>
+
+    <!-- 8. 버튼 추가 -->
+    <div>
+        <!-- 10. 토글클래스를 버튼으로 추가 -->
+        <button type="button" id="btn1">toggleClass</button>
+
+        <!-- 12.토클을 버튼으로 추가 -->
+        <button type="button" id="btn2">toggle</button>
+
+        <!-- 15.페이드토글(쇼 하이드) 버튼 생성 -->
+        <button type="button" id="btn3">fadeToggle</button>
+
+        <!-- 18.토글슬라이드(쇼 하이드) 버튼 생성 -->
+        <button type="button" id="btn4">slideToggle</button>
+    </div>
+
+    <script>
+
+        // 4. div 제이쿼리 작성
+        $(function () {
+
+            // 5. addClass 해당하는 클래스명이 추가된다(class="bg-blue")
+            $('div span:first-child').addClass('bg-blue');
+
+            // 6. .css 적용 .css('속성','값') 배경에 빨간색 적용
+            $('div span:last-child').css('background', 'red');
+
+            $('div span:first-of-type').hide();
+            $('div span:first-of-type').show();
+
+            // 13. 콜백펑션(쇼,하이드, 토글 등) 뒤에 듀레이션하는 인자값을 받을 수 있는데 
+            // 이 자리에 스트링으로 들어오면 'slow','fast'가 오고 넘버(숫자)로 들어오면 밀리세컨드 단위로 들어온다
+            // $('div span:last-of-type').hide('slow' /* 'fast' */ /* 3000 */, function(){console.log('wow')});
+            // $('div span:nth-child(2)').fadeout('slow');
+
+            // 14. fadeOut() fadeIn() = 글씨가 사라졌다(fadeOut()) 생긴다(fadeIn())
+            $('div span:nth-child(2)').fadeOut(2000);
+            $('div span:nth-child(2)').fadeIn(2000);
+            // $('div span:nth-child(2)').fadeIn('slow');
+
+            // 16.fadeTo() 안에 opacity
+            // 우리가 설정한 투명도까지만 진행이 되고 멈춘다
+            $('div span:nth-last-child(2)').fadeTo('slow', 0.4);
+
+            // 17.슬라이드 Up,Down 
+            $('div span:nth-of-type(2)').slideUp();
+            $('div span:nth-of-type(2)').slideDown();
+
+            // $('div span:only-child')
+            // $('div span:only-of-type').addClass('bg-blue');
+
+            // 7. ss 클래스명 제거
+            $('div span:first-child').ss('bg-blue');
+
+            // 9. 토글클래스는 클래스를 제거했다가 추가했다가 하는것
+            // 10. 토글클래스를 버튼으로 추가
+            $('#btn1').on('click', function () {
+                $('div span:first-of-type').toggleClass('bg-blue');
+            })
+
+            // 11.토글은 쇼했다 하이드했다 하는 것
+            // 12.토클을 버튼으로 추가
+            $('#btn2').on('click', function () {
+                $('div span:first-of-type').toggle('bg-blue');
+            })
+
+            // 15.페이드토글(쇼 하이드) 버튼 생성
+            $('#btn3').on('click', function () {
+                $('div span:nth-child(2)').fadeToggle(1000);
+            })
+
+            // 18.토글슬라이드(쇼 하이드) 버튼 생성
+            $('#btn4').on('click', function () {
+                $('div span:nth-child(2)').slideToggle(1000);
+            })
+        })
+    </script>
+
+</body>
+
+<!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음))
+
+2. (헤드) 내부 스타일 시트 작성
+
+3. (바디) 태그 div p span 작성
+
+4. div 제이쿼리 작성
+
+5. addClass 해당하는 클래스명이 추가된다(class="bg-blue")
+
+6. .css 적용
+
+7. removeClass 클래스명 제거
+
+8. 버튼 추가
+
+9. 토글클래스는 클래스를 제거했다가 추가했다가 하는것
+
+10. 토글클래스를 버튼으로 추가
+
+11. 토글은 쇼했다 하이드했다 하는 것
+
+12.토클을 버튼으로 추가
+
+13. 스트링 슬로우 패스트
+넘버 밀리세컨드
+펑션 콜백평션
+동작이 완료되면 완료됐을 때 어떤 동작을 할건지
+듀레이션
+쇼 하이드 토글
+전부다 똑같은 인자를 받는다
+
+콜백펑션(쇼,하이드, 토글 등) 뒤에 듀레이션하는 인자값을 받을 수 있는데 이 자리에 스트링으로 들어오면 'slow','fast'가 오고 넘버(숫자)로 들어오면 밀리세컨드 단위로 들어온다
+
+14. fadeOut() fadeIn() = 글씨가 사라졌다(fadeOut()) 생긴다(fadeIn())
+
+15.페이드토글(쇼 하이드) 버튼 생성
+
+16.fadeTo() 안에 opacity
+우리가 설정한 투명도까지만 진행이 되고 멈춘다
+
+17.슬라이드 Up,Down 
+
+18.토글슬라이드(쇼 하이드) 버튼 생성 -->
+
+</html>

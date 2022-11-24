@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuert2</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- 2. (헤드) 스크립트 제이쿼리 레디 함수 생성  -->
+    <script>
+
+        // 5. 화면에 로딩이 됐을 때 온로드 (자바스크립트 방식)
+        // document.onload(function(){});
+
+        // 6. (헤드) 제이쿼리 방식(ready)
+        // $(document).ready(function () {
+
+        // });
+
+        // 7. 다큐먼트 레디 자체가 축약해서 사용 가능( $(function(){}); ) 동일한 의미
+        $(function () {
+
+            // 9. 자바스크립트 방식으로 치면
+            // <!-- document.getElementById('ex1').addEventListener('click',function(){}); -->
+            // 여태까지 봐왔던 방식
+            // document.getElementById('ex1').addEventListener('click',function(){});
+
+            // 8. 버튼에 이벤트를 걸겠다
+            // 11. 제이쿼리는
+            // <!-- $('#ex1').click(function () {
+            //         $('*').css('background-color', 'wihte');
+            //         $('[name|=seoul]').css('background-color','pink');
+            //     }); -->
+            // 12. 최근에 많이 사용하는 것은 온이다(.on())
+            // 13. 온 말고도 클릭이 있다(.click())
+            // 14. 해당하는 이벤트가 연동이 된다
+
+            // 22. 제이쿼리 #ex1~#ex9까지 작성
+            // 22. (중요) 클릭이라는 이벤트 연동과 동시에 css를 통해서 해당하는 백그라운드 내용을 변경하는 것
+            $('#ex1').click(function () {
+
+                // 16. (정의) css에서 *은 전체선택(전부 다 선택)
+                // 21. 초기화 하기 위해서 백그라운 컬러 화이트
+                $('*').css('background-color', 'white');
+
+                // 17. (정의) .css는 뒤에 속성명을 적으면 속성명 값을 받아온다 (.css(propertyName))
+                // 18. (정의) (.css(propertyName, value)) 해당하는 속성에 값을 할당해준다
+                // 20. .css()를 통해서 값을 받아오거나 할당 가능
+                $('[name|=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex2').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name*=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex3').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name~=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex4').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name$=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex5').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex6').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name!=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex7').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name^=seoul]').css('background-color', 'pink');
+            });
+
+            $('#ex8').on('click', function () {
+                $('*').css('background-color', 'white');
+                $('[name]').css('background-color', 'pink');
+            });
+
+            $('#ex9').on('click', function () {
+                $('*').css('background-color', 'white');
+                // 23. id라는 속성을 가지고 있는 것들 중에서 서울이라는 속성인지
+                $('[id][name*=seoul]').css('background-color', 'pink');
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+        
+    <!-- 3. (바디) 테이블 tr td input 12개 생성 -->
+    <table>
+        <tr>
+            <td>
+                <input name="seoul" id="seoul" value="seoul"><br>
+                <input name="pre-seoul" value="pre-seoul"><br>
+                <input name="seoul-sub" value="seoul-sub"><br>
+                <input name="pre-seoul-sub" value="pre-seoul-sub"><br>
+                <input name="pre seoul" value="pre seoul"><br>
+                <input name="seoul sub" value="seoul sub"><br>
+                <input name="pre seoul sub" value="pre seoul sub"><br>
+                <input name="seoul12" value="seoul12"><br>
+                <input name="pre-seoul12" value="pre-seoul12"><br>
+                <input name="seoul12-sub" value="seoul12-sub"><br>
+                <input name="pre-seoul12-sub" value="pre-seoul12-sub"><br>
+                <input name="tokyo-sub" value="tokyo-sub"><br>
+            </td>
+
+            <!-- 4. td 버튼 9개 생성 -->
+            <td>
+                <button id="ex1">1[attribute|=value]</button><br>
+                <button id="ex2">2[attribute*=value]</button><br>
+                <button id="ex3">3[attribute~=value]</button><br>
+                <button id="ex4">4[attribute$=value]</button><br>
+                <button id="ex5">5[attribute=value]</button><br>
+                <button id="ex6">6[attribute!=value]</button><br>
+                <button id="ex7">7[attribute^=value]</button><br>
+                <button id="ex8">8[attribute]</button><br>
+                <button id="ex9">9[id][attribute*=value]</button><br>
+            </td>
+        </tr>
+    </table>
+</body>
+
+<!--    1. 제이쿼리 코드 생성
+
+        2. (헤드) 스크립트 제이쿼리 레디 함수 생성
+
+        3. (바디) 테이블 tr td input 12개 생성
+
+        4. (바디) td 버튼 9개 생성
+
+        5. 화면에 로딩이 됐을 때 온로드 (자바스크립트 방식)
+
+        6. (헤드) 제이쿼리 방식(ready)
+
+        7. 다큐먼트 레디 자체가 축약해서 사용 가능($(function(){});)동일한 의미
+
+        8. 버튼에 이벤트를 걸겠다
+
+        9. 자바스크립트 방식으로 치면
+        document.getElementById('ex1').addEventListener('click',function(){});
+        여태까지 봐왔던 방식
+
+        10. document.getElementById('ex1')=$('#ex1') 
+        자바스크립트 방식과 제이쿼리 방식 비교
+
+        11. 제이쿼리는
+        $('#ex1').click(function () {
+                $('*').css('background-color', 'wihte');
+                $('[name|=seoul]').css('background-color','pink');
+            });
+
+        12. 최근에 많이 사용하는 것은 온이다(.on())
+
+        13. 온 말고도 클릭이 있다(.click())
+
+        14. 해당하는 이벤트가 연동이 된다
+
+        15. (참고) deprecated = 나중에 사라질거니까 사용하지마라
+
+        16. (정의) css에서 *은 전체선택(전부 다 선택)
+
+        17. (정의) .css는 뒤에 속성명을 적으면 속성명 값을 받아온다 (.css(propertyName))
+
+        18. (정의) (.css(propertyName, value)) 해당하는 속성에 값을 할당해준다
+
+        19. (정의) (.html()) innerHTML처럼 넣는다
+
+        20. .css()를 통해서 값을 받아오거나 할당 가능
+
+        21. 초기화 하기 위해서 백그라운 컬러 화이트
+
+        22. 제이쿼리 #ex1~#ex9까지 작성
+
+        22. (중요) 클릭이라는 이벤트 연동과 동시에 css를 통해서 해당하는 백그라운드 내용을 변경하는 것 -->
+                
+</html>

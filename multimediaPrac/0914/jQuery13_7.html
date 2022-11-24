@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery13</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li class="vac">
+            <h3>부산 여행</h3>
+            <button id="btn1">가격 알아보기(append)</button>
+            <button id="btn2">가격 알아보기(prepend)</button>
+            <button id="btn3">가격 알아보기(before)</button>
+            <button id="btn4">가격 알아보기(after)</button>
+        </li>
+    </ul>
+
+    <script>
+
+        $(function(){
+
+            let price = $('<p>40만원</p>');
+            $('#btn1').click(function(){
+                $('.vac').append(price);
+            });
+            $('#btn2').click(function(){
+                $('.vac').prepend(price);
+            });
+            $('#btn3').click(function(){
+                $('.vac').before(price);
+            });
+            $('#btn4').click(function(){
+                $('.vac').after(price);
+            });  
+
+            // 1. wrap, 해당하는 버튼들이 div로 싸졌다, 그 태그 안쪽에 집어넣어서 표시해준다, button을 <div></div>으로 싼다
+            $('button').wrap("<div></div>");
+
+            // 2. wrapInner, 버튼이라는 요소 안쪽에 있는 것을 싼다, ex) <strong>얼마 가격 알아보기(before)</strong>
+            $('button').wrapInner("<strong>얼마</strong>");
+
+            // 3. text,html, 인자값이 있으면 할당(set) 없으면 얻어온다(get)
+            let btn=$('#btn3').html();
+            console.log(btn);
+            $('h3').text(btn);
+            $('h3').html('<b>부산여행</b>');
+            
+        });
+
+    </script>
+</body>
+</html>

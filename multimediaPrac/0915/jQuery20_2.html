@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery20</title>
+
+    <script src="../js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <div>
+        저장된 값은 <span></span> 그리고 <span></span>
+    </div>
+
+    <script>
+        // 1. 요소 안에 데이터가 존재
+        // 2. 객체나 특정한 문자열을 저장하는데 활용
+        // 3. data(키값을 주고 객체를 집어넣었다) 키값에 객체 값을 저장
+        // 4. 이름이 exam인걸 가져오겠다 키값을 호출하면 밸류값이 온다
+        // 5. $('div').data('exam').number // 100
+        // 6. $('div').data('exam').fruit // apple
+
+        $('div').data('exam', { number: 100, fruit: 'apple' }); // 할당
+        $('div').data('exam2', 'value2');
+        $('span').first().text($('div').data('exam').number); // 읽어오기
+        $('span').last().text($('div').data('exam').fruit);
+        // $('div').removeDate('exam2'); // 삭제
+        $('div').append($('div').data('exam2'));
+
+
+
+    </script>
+</body>
+
+</html>

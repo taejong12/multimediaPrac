@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery2</title>
+
+    <script src="../js/jquery-3.6.1.min.js"></script>
+
+</head>
+
+<body>
+    <ul>
+        <li class="vac">
+            <h3>부산 여행</h3>
+            <button>가격보기</button>
+        </li>
+
+        <li class="vac">
+            <h3>제주도 여행</h3>
+            <button>가격보기</button>
+        </li>
+    </ul>
+
+    <script>
+        $(function(){
+            $('button').click(function(){
+                // let price = '40만원';
+                
+                // $(this).remove();
+                // $(this).parent().append(price);
+
+                // $(this).replaceWith(price);
+
+                // $(this).before(price).remove();
+                
+                // $(this).after(price).remove();
+                
+                // $(this).closest('.vac').append(price).end().remove();
+                
+                let bTrip = '40만원';
+                let jTrip = '100만원';
+
+                $(this).before(bTrip).remove();
+                
+            });
+        });
+    </script>
+</body>
+
+</html>

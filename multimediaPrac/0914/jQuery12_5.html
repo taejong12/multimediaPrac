@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery12</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"> </script>
+
+    <style>
+        .siblings *{
+            display: block;
+            border: 2px solid lightgray;
+            color:lightgray;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+
+</head>
+
+<body class="siblings">
+    <div>div(parent)
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <h4>h4</h4>
+        <h5>h5</h5>
+        <h6>h6</h6>
+        <p>p</p>
+    </div>
+
+    <script>
+        $(function(){
+            // silbings 형제들
+            // $('h2').siblings().css({'color':'red','border':'2px solid red'});
+
+            // next ,다음 형제
+            // $('h2').next().css({'color':'blue','border':'2px solid blue'});
+
+            // nextAll, 다음형제 전부
+            // $('h2').nextAll().css({'color':'green','border':'2px solid green'});
+
+            // nextUntil, 해당하는 것 전까지
+            // $('h2').nextUntil('h6').css({'color':'violet','border':'2px solid violet'});
+
+            // prev, 전(앞)에 형제
+            // $('h6').prev().css({'color':'blue','border':'2px solid blue'});
+
+            // prevAll, 앞에 형제 전부
+            // $('h6').prevAll().css({'color':'green','border':'2px solid green'});
+
+            // prevUntil, 지정된 것 전까지
+            // $('h6').prevUntil('h2').css({'color':'violet','border':'2px solid violet'});
+        })
+    </script>
+
+</body>
+
+</html>

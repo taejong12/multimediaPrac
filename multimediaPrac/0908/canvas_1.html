@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <h1>캔버스</h1>
+    <canvas id="drawCanvas" width="400px" height="250px" style="border:1px solid black;">
+        이 브라우저는 canvas 요소를 지원하지 않습니다.
+    </canvas>
+
+    <script>
+        let paper = document.getElementById('drawCanvas');
+        let tool = paper.getContext('2d');
+
+        tool.strokeRect(10, 10, 250, 130); // 선 사각형의 왼쪽 위의 좌표인 x, y, width, height
+        tool.fillStyle = "rgba(255,0,0,1)";
+        tool.fillRect(20, 20, 250, 130); // 꽉채워진 사각형
+        tool.clearRect(30, 30, 100, 100);
+
+        tool.moveTo(0, 0);
+        tool.lineTo(300, 150);
+        tool.lineTo(150, 170);
+        tool.stroke();
+
+        tool.beginPath();
+        tool.moveTo(200, 75);
+        tool.arc(200, 75, 50, 0, 2 * Math.PI);
+        tool.closePath();
+        tool.stroke();
+
+        tool.font = '40px Arial';
+        tool.fillText('Canvas', 260, 30);
+        tool.strokeText('Canvas', 260, 150);
+
+        let grd = tool.createLinearGradient(0, 0, 200, 0);
+        grd.addColorStop(0, 'red');
+        grd.addColorStop(1, 'blue');
+        tool.fillStyle = (grd);
+        tool.font = "40px Arial";
+        tool.fillText("Gradient", 15, 120);
+        tool.fillRect(0, 0, 250, 10);
+
+        let grd2 = tool.createRadialGradient(150, 150, 20, 150, 150, 200);
+        grd2.addColorStop(0, 'red');
+        grd2.addColorStop(1, 'blue');
+        tool.fillStyle = grd2;
+        tool.fillRect(10, 150, 200, 100);
+
+        tool.moveTo(50, 0);
+        tool.lineTo(100, 100);
+        tool.lineTo(0, 50);
+        tool.lineTo(100, 50);
+        tool.lineTo(0, 100);
+        tool.lineTo(50, 0);
+        tool.stroke();
+
+    </script>
+
+    <br>
+
+    <img id="orign" src="/0908/img/1401e813472967e3b572fee1ee192eb841d1a2caccd0c566eab28b91e2e5d306.png"    alt="개구리"
+        width="100px" height="100px">
+    <canvas id="copy" width="200px" height="200px" style="border:1px solid black;">미지원</canvas>
+
+    <br>
+
+    <button onclick="draw();">그리기</button>
+    
+    <script>
+        function draw() {
+            let paper1=document.getElementById('copy');
+            let tool1=paper1.getContext('2d');
+            let src=document.getElementById('orign');
+            console.log(paper1.src);
+            tool1.drawImage(src,50,50,100,100);
+       
+        }
+    </script>
+
+</body>
+
+</html>

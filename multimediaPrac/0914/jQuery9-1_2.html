@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery9-1</title>
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+
+</head>
+
+<body>
+    
+    <form>
+        <fieldset>
+            <label>이름:</label>
+            <input type="text" name="name" value="">
+            <label>암호:</label>
+            <input type="password" name="pw" value="">
+            <label>이메일:</label>
+            <input type="email" name="email" value="">
+        </fieldset>
+    </form>
+
+    <button type="button" id="print">출력</button>
+    <b>값 출력:</b><p></p>
+    <p id="remove">지울거임.</p>
+
+    <script>
+        // 어레이처럼 등록한다 
+        console.log($('div'));
+
+// 달러 인풋으로 넣으면 3개의 배열이 들어간다 템프에다가 해당하는 펑션을 하나하나 적용되어있는 배열이 나왔다 
+// 인덱스 엘리먼트 찍히는 횟수가 3번 찍혔다 개별로 하나씩 적용될 때 마다 내부 콜백함수가 돌면서 찍힌다
+
+        let temp = $('input').map(function (index, ele) {
+            console.log(index, ele);
+            // 해당하는 값을 받아서 넣는다
+            return $(this).val();
+        });
+        console.log(temp, temp.get());
+
+        // empty 내부 자식 요소 제거
+        // remove 자기자신을 포함한 노드 전체를 제거
+        // input에 있는 것을 하나씩 가져오는데 인풋창에 입력한 3개의 값을 받아서 배열로 만든다
+        // 배열로 만들어오는데 join은 문자열로 바꿔준다
+        // map으로 배열 형태로 만들어진걸 값을 받아와서 get으로 Array로 바꿔주고 join해서 문자열로 받았다
+        $('#print').click(function () {
+            $('p').empty();
+            $('#remove').remove();
+            $('p').append(
+                $('input').map(function (index, ele) {
+                    return $(this).val();
+                }).get().join()
+            );
+        });
+        // 배열형태 객체로 들어온다
+        console.log($('div'));
+
+        // div로 들어온걸 슬라이스로 필요한 부분만 잘라낼 수 있다
+        $('div').slice(2,4).css('background-color','pink');
+        $('div').slice(-2,-1).css('background-color','gray');
+        
+    </script>
+</body>
+
+</html>

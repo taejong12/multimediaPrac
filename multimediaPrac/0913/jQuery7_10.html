@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery7</title>
+
+    <script src="js/jquery-3.6.1.min.js"></script>
+
+    <style>
+        .resizable{
+            resize:both;
+            overflow:scroll;
+            border:1px solid black;
+        }
+        div{height: 300px; width: 300px;}
+        p{height: 200px; width: 200px;}
+    </style>
+
+    <!-- 클릭했을 때 사이즈의 형태를 보여주기 위함 -->
+
+    <script>
+        $(function(){
+            $('button').click(()=>{
+                txt='';
+                txt+="Width of div: "+$(".resizable").width()+"</br>";
+                txt+="innerWidth of div: "+$(".resizable").innerWidth()+"</br>";
+                txt+="outerWidth of div: "+$(".resizable").outerWidth()+"</br>";
+                txt+="Height of div: "+$(".resizable").height()+"</br>";
+                txt+="innerHeight of div: "+$(".resizable").innerHeight()+"</br>";
+                txt+="outerHeight of div: "+$(".resizable").outerHeight();
+                $(".resizable").html(txt);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <button>div 크게보기</button>
+    <div class="resizable">
+        <p class="resizable">
+            이 문장은 사이즈 변경이 가능한 div 요소 내에 있습니다.
+        </p>
+    </div>
+
+    <!-- <div>
+        1.default(기본값)-inner-outer
+
+        크기별로 오는 거랑 마지막에 true 마진 포함하는 것까지 알면 됨
+    </div> -->
+</body>
+
+</html>

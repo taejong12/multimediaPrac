@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+
+    <style>
+        p {
+            margin: 3px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>오늘 점심은 뭘 먹었나요?</h3>
+    <input type="radio" class="vote" name="vote" value="0">한식<br>
+    <input type="radio" class="vote" name="vote" value="1">중식<br>
+    <input type="radio" class="vote" name="vote" value="2">일식<br>
+    <input type="radio" class="vote" name="vote" value="3">양식<br>
+    <p>한식</p>
+    <p>중식</p>
+    <p>일식</p>
+    <p>양식</p>
+
+    <h3>오늘 점심은 뭘 먹었나요?</h3>
+    <p class="vote2">한식</p>
+    <p class="vote2">중식</p>
+    <p class="vote2">일식</p>
+    <p class="vote2">양식</p>
+
+    <script>
+        $(function () {
+            // $('.vote2').click(function () {
+            //     $(this).append('■');
+            // });
+
+            // $('[value="0"]').click(function(){
+            //     $('p').eq(0).append('■');
+            // });
+
+            // $('[value="1"]').click(function(){
+            //     $('p').eq(1).append('■');
+            // });
+
+            // $('[value="2"]').click(function(){
+            //     $('p').eq(2).append('■');
+            // });
+
+            // $('[value="3"]').click(function(){
+            //     $('p').eq(3).append('■');
+            // });
+
+            // $('.vote').click(function(){
+            //     console.log($(this).val()); // 항상 확인
+            //     let index=$(this).val();
+            //     $('p').eq(index).append('■');
+            // });
+
+            // $('input').click(function(event){
+            //     console.log($(event.target).val());
+            //     $('p').eq($(event.target)).append('■');
+            // });
+
+            $('input').click(function () {
+                console.log($('[name="vote"]:checked').val());
+                $('p').eq($('[name="vote"]:checked').val()).append('■');
+            });
+
+        });
+    </script>
+</body>
+
+</html>

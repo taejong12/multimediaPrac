@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery15</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+
+</head>
+
+<body>
+    <input type="checkbox" id="test1" checked="checked" />
+    <input type="checkbox" id="test2" />
+    <div id="res1"></div>
+    <div id="res2"></div>
+
+    <script>
+
+        // attr, checked undefined로 값을 가져온다(기본적으로 attr)
+        // prop, true false로 값을 가져온다(특수한 경우를 위해 만들어짐)
+        // input 에서 radio나 checkbox 등 특수한 경우에 prop을 쓰면 checked가 되어있으면 true 없으면 false
+        // 기본적인 속성은 해당하는 요소에 있는 속성의 아이디값을 호출하면 값을 가져오거나 할당하거나
+        // 제이쿼리는 인자값이 있으면 할당(set) 없으면 가져온다(get)
+
+        $(function () {
+            $('#res1').html("attr checked: " + $('#test1').attr('checked')
+                + "// prop checked: " + $('#test1').prop('checked'));
+
+            $('#res2').html("attr checked: " + $('#test2').attr('checked')
+                + "// prop checked: " + $('#test2').prop('checked'));
+        });
+    </script>
+
+    <button id="tbtn">타이틀 변경</button>
+    <input type="text" title="여기는 여기" id="ins">
+    <div id="res3"></div>
+
+    <script>
+
+        // attr=속성
+        // removeAttr, 해당하는 속성 값을 삭제할 수 있다.
+        // attr, 해당하는 값을 읽어오고 할당할 수 있다.
+        // prop, attr하고 똑같이 동작
+
+        let inputTitle = $('#ins').attr('title'); // inputTilte=여기는 여기
+        console.log(inputTitle);
+        $('#tbtn').click(function () {
+            let input = $(this).next(); // 버튼의 다음 인풋
+            let val = input.val(); // text 입력값
+            console.log(input, val);
+            console.log(input.attr('title'), inputTitle);
+            if (input.attr('title') === inputTitle) {
+                input.removeAttr('title');
+            } else {
+                input.attr('title', val);
+            }
+            $('#res3').html('tittle은' + input.attr('title'));
+        });
+    </script>
+
+    <p></p>
+
+    <script>
+        let pa = $('p');
+        $('p').prop('addr', 9494) // 값 할당하기
+            .append('addr : ' + pa.prop('addr')) // 값 읽어오기 // 9494
+            .removeProp('addr') // 값 삭제
+            .append(' // addr : ' + pa.prop('addr')) // 값 읽어오기 // undefined
+    </script>
+</body>
+
+</html>

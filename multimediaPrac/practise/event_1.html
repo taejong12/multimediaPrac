@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 연결(발동)방법</title>
+</head>
+
+<body>
+    1) 인라인 방식
+    <태그명 on이벤트=자바스크립트 코드> </태그명>
+    <div onclick="alert('클릭했습니다1.')">클릭</div>
+    <div onclick="view()">클릭</div>
+
+    <script>
+        function view() {
+            alert("클릭했습니다2.");
+        }
+    </script>
+
+
+
+    2) 고전 방식
+    [1]
+    객체.on이벤트명 = function() {
+    }
+
+
+    [2]
+    function 함수명() {
+    }
+    객체.on이벤트명 = 함수명
+
+
+    <div id="bt">클릭</div>
+
+    [방법1]
+    <script>
+        var bt = document.getElementById("bt");
+        bt.onclick = function () {
+            alert("클릭했습니다!!!");
+        };
+    </script>
+
+
+    [방법2]
+    <script>
+        var bt = document.getElementById("bt");
+        function view() {
+            alert("클릭했습니다!!!");
+        }
+
+        bt.onclick = view;
+
+        /*
+        bt.onclick = function() {
+           view();
+        }
+        */
+    </script>
+
+    3)
+    객체.addEventListner('이벤트명',function(){
+
+    });
+
+    객체.removeEventListner('이벤트명',function(){
+
+    });
+</body>
+
+</html>

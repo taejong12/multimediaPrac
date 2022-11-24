@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example</title>
+
+    <script src="js/jquery-3.6.1.min.js"></script>
+
+    <script>
+        $(function () {
+
+            // 1. prepend = <li> 앞쪽으로
+            $('#btn1').click(() => {
+                $('ol').prepend("<li>prepend item</li>");
+            })
+
+            // 2. append = <li> 뒤쪽으로
+            $('#btn2').click(() => {
+                $('ol').append("<li>append item</li>");
+            })
+
+            // 3. before = <ol>에 앞쪽으로
+            $('#btn3').click(() => {
+                $('ol').before("<strong>Before</strong>");
+            })
+
+            // 4. after = <ol>에 뒤쪽으로
+            $('#btn4').click(() => {
+                $('ol').after("<i>After</i>");
+            })
+
+            // 5. empty = 해당하는 자식 요소들이 제거된다 요소만 제거
+            $('#btn5').click(() => {
+                $('#div').empty();
+
+            })
+
+            // 6. remove
+            // 나 자신까지 포함해서 지운다 여기서는 div 자체가 없어짐(.remove();)
+            // 특정한 셀렉터를 적으면 특정 클래스만 삭제하겠다
+            // remove 뒤에 해당하는 내용물을 작성하면 그 부분만 삭제가능(.remove('.class');)
+            $('#btn6').click(() => {
+                // $('#div').remove();
+                $('p').remove('.target');
+            })
+        });
+
+    </script>
+</head>
+
+<body>
+    <ol>
+        <li>List item1</li>
+        <li>List item2</li>
+        <li>List item3</li>
+    </ol>
+
+    <button id="btn1">prepend</button>
+    <button id="btn2">append</button>
+    <button id="btn3">before</button>
+    <button id="btn4">after</button>
+
+    <br>
+    <div id="div" style="height:100px;width:300px;border:1px solid black;">
+        div 내부의 문장들
+        <p>내부 문장1</p>
+        <p class="target">내부 문장2</p>
+    </div>
+    <button id="btn5">empty</button>
+    <button id="btn6">remove</button>
+
+
+    <!-- <div>
+        1. prepend = <li> 앞쪽으로
+            
+        2. append = <li> 뒤쪽으로
+            
+        3. before = <ol>에 앞쪽으로
+                
+        4. after = <ol>에 뒤쪽으로
+
+        5. empty = 해당하는 자식 요소들이 제거된다 요소만 제거
+
+        6. remove
+        나 자신까지 포함해서 지운다 여기서는 div 자체가 없어짐
+        특정한 셀렉터를 적으면 특정 클래스만 삭제하겠다
+        remove 뒤에 해당하는 내용물을 작성하면 그 부분만 삭제가능
+
+    </div> -->
+
+
+</body>
+
+</html>

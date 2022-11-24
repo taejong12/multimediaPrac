@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+</head>
+<body>
+    <script>
+        // 즉시 실행 함수
+        // (function init(){
+        //     console.log(window.navigator.geolocation);
+        //     window.navigator.geolocation.getCurrentPosition(current_position);
+        // }());
+
+        function init(){
+            console.log(window.navigator.geolocation);
+            window.navigator.geolocation.getCurrentPosition(current_position);
+        }
+
+        function current_position(position){
+            console.log(position);
+            var msg;
+            msg="Latitude:"+position.coords.latitude+","+"Longitude:"+position.coords.longitude;
+            alert(msg);
+        }
+        window.addEventListener("load",init); // load하면 init을 불러오겠다
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery11</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+
+</head>
+
+<body>
+    <ul class="lvl1">
+        <li class="i1">I</li>
+        <li class="i2">II
+            <ul class="lvl2">
+                <li class="ia">A</li>
+                <li class="ib">B
+                    <ul class="lvl3">
+                        <li class="ix">X</li>
+                        <li class="iy">Y</li>
+                        <li class="iz">Z</li>
+                    </ul>
+                </li>
+                <li class="ic">C</li>
+            </ul>
+        </li>
+        <li class="i3">III</li>
+    </ul>
+
+    <script>
+        // 1. children, 자기 자식에 있는 것 전부, 내 자식 요소 전부
+        // 2. ul.lvl2의 자식 전부에게 css 적용
+        // $('ul.lvl2').children().css('background-color','red');
+
+        // 3. closest, 가장 가까이에 있는 조상(ul) 선택 해당하는 것에 css 적용
+        // $('li.ia').closest('ul').css('background-color','blue');
+
+        // 4. 같은 곳에 적용하지만 도달하는 방식이 다름
+        // 5. parent, 상위 요소, 부모 태그 적용
+        // $('li.ia').parent('ul').css('background-color','green');
+
+        console.log($('li.ia').parents());
+
+        // 6. parents, 상위 요소들 전부 다 선택
+        // $('li.ia').parents().css('background-color','red');
+
+        // 7. next, 다음 요소 1개, 바로 다음 형제만, 형제요소
+        // $('.ia').next().css('background-color','red');
+
+        // 8. nextAll, 다음 요소 전부, 다음 형제들 전부
+        // $('.ia').nextAll().css('background-color','red');
+
+        // 9. find, 내부에 있는 li를 찾아서 css 적용
+        // $('li.i2').find('li').css('background-color','violet');
+
+        // 10. css 안에 객체를 집어넣는 것도 가능{propertyName:propertyValue}
+        // 11. parentsUntil, 어디까지만 할건지, lvl1 전까지 적용
+        $('.ix').parentsUntil('.lvl1').css({ 'color': 'blue' });
+
+    </script>
+</body>
+
+</html>

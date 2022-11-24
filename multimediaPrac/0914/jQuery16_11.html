@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery16</title>
+
+    <script src="../0913/js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li class="vac">
+            <h3>부산 여행</h3>
+            <button>가격보기</button>
+        </li>
+
+        <li class="vac">
+            <h3>제주도 여행</h3>
+            <button>가격보기</button>
+        </li>
+    </ul>
+
+    <script>
+        $(function () {
+            $('button').click(function () {
+
+                let price = $('<p>40만원</p>');
+
+                // replaceWith 교체하다
+                // $(this).replaceWith(price);
+
+                // $(this).before(price);
+                // $(this).remove();
+                
+                $(this).before(price).remove();
+                
+                // $(this).after(price).remove();
+
+                // $(this).parent().append(price).end().remove();
+                // $(this).remove();
+
+                // $(this).closest('.vac').append(price).end().remove();
+                
+            });
+
+        //     let busan = $('<p>40만원</p>');
+            
+        //     let jeju = $('<p>100만원</p>');
+            
+            
+        //     $('.vac button').eq(0).click(function () {
+        //         console.log($('.vac button').eq(0));
+        //         $('.vac button').eq(0).hide();
+        //         $('.vac').eq(0).append(busan);
+        //     });
+            
+        //     $('.vac button').eq(1).click(function () {
+        //         $('.vac button').eq(1).hide();
+        //         $('.vac').eq(1).append(jeju);
+        //     });
+
+        });
+
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멀티미디어</title>
+</head>
+
+<body>
+    <h1>video</h1>
+    <video controls loop style="width: 500px; height: 360px;" poster="img/sea-g8da68da32_640.jpg">
+        <source src="media/skycloud.mp4" type="video/mp4">
+        <source src="media/watervalley.mp4" type="video/mp4">
+        <track src="#" kind="subtitles" srclang="ko" label="한국어">
+        <track src="#" kind="subtitles" srclang="en" label="English">
+        이 브라우저는 video 요소를 지원하지 않습니다.
+    </video>
+
+    <h1>audio</h1>
+    <audio controls autoplay loop>
+        <source src="media/backgroundaudioone.mp3" type="audio/mp3" preload="auto">
+        <source src="media/backgroundaudiotwo.mp3" type="audio/mp3">
+        이 브라우저는 audio를 지원하지 않습니다.
+    </audio>
+    <object data="media/multimediapdf.pdf">미지원</object>
+    <object data="img/sea-g8da68da32_640.jpg" width="200px" height="100px"></object>
+    <br>
+    <object data="/0907/dataprac.html" style="width: 1000px; height: 300px;"></object>
+
+    <embed src="media/multimediapdf.pdf">
+    <embed src="img/sea-g8da68da32_640.jpg" width="200px" height="100px">
+    <embed src="/0907/dataprac.html"style="width: 1000px, height: 300px">
+</body>
+
+</html>

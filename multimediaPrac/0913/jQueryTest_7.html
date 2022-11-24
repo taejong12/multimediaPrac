@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQueryTest</title>
+
+    <!-- 1. 제이쿼리 CDN에서 script 코드 복사해서 가져옴(파일을 다운로드 받아서 cdn을 통해서 직접 집어 넣어도 된다(js 폴더에 넣었음)) -->
+    <script src="js/jquery-3.6.1.min.js"></script>
+    
+    <style>
+        div.panel,p.flip
+        {
+            line-height:30px;
+            color: white;
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+            background: #555;
+            border: solid 1px #666;
+            color: #ffffff;
+            border-radius: 3px;
+            font-size: 17px;
+        }
+        div.panel{display: none; overflow: hidden;} 
+        p.flip{cursor: pointer;}
+    </style>
+
+</head>
+<body>
+    
+    <button id="stop">STOP</button>
+    <p class="flip">해당 패널을 슬라이딩 업/다운하기 위해 클릭하는 부분</p>
+    <div class="panel">
+        <p>해당 패널은 슬라이딩되어 내용이 보여집니다.</p>
+        <p>더불어 중간에 멈추는 동작도 추가되어 있습니다.</p>
+        <p>Jquery를 통해 구현되어 있습니다.</p>
+    </div>
+
+    <script>
+    
+         $(function () { 
+
+            // 2. 선택자로 클래스flip(.flip)의 이벤트타입(.click())(클릭시 이벤트 발생)
+            $('.flip').click(function () {
+
+                // 3.선택자로 클래스panel(.panel)의 슬라이드토글(.slideToggle(스트링('fast','slow'), 넘버(ms))) 동작
+                $('.panel').slideToggle(3000);
+            });
+
+            // 4. 선택자로 아이디stop(#stop)의 이벤트타입(.click())(클릭시 이벤트 발생)
+            $('#stop').click(function () {
+
+                // 5. 선택자로 클래스panel(.panel)의 스탑(.stop(clearQueue, jumpToEnd)) 동작
+                $('.panel').stop();
+            });
+        });
+
+        // 화살표 함수
+        // let panel=$('.panel');
+        // $('.flip').click(()=>panel.slideToggle(3000));
+        // $('#stop').click(()=>panel.stop());
+
+        // 체이닝
+        // let panel=$('.panel');
+        // $('.flip').click(()=>{panel.slideDown(3000).slideUp(3000);});
+        // $('#stop').click(()=>panel.stop());
+        
+
+    </script>
+</body>
+</html>
